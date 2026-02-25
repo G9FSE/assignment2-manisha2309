@@ -4,7 +4,7 @@ const typeIndex = args.indexOf("--type");
 const type = typeIndex !== -1 ? args[typeIndex + 1] : null;
 
 if (!type) {
-  console.log("❌ Please provide movie type.");
+  console.log("Please provide movie type.");
   console.log('Usage: node index.js --type "popular"');
   process.exit(1);
 }
@@ -30,7 +30,7 @@ function getEndpoint(type) {
 const endpoint = getEndpoint(type);
 
 if (!endpoint) {
-  console.log("❌ Invalid type!");
+  console.log(" Invalid type!");
   console.log("Valid types: popular, playing, top, upcoming");
   process.exit(1);
 }
@@ -41,13 +41,14 @@ axios.get(url)
   .then(response => {
     const movies = response.data.results;
 
-    console.log(`\n🎬 Showing ${type} movies:\n`);
+    console.log(`\n Showing ${type} movies:\n`);
 
     movies.slice(0, 10).forEach((movie, index) => {
       console.log(`${index + 1}. ${movie.title}`);
     });
   })
   .catch(error => {
-    console.log("❌ Error fetching data.");
+    console.log(" Error fetching data.");
     console.log(error.message);
+
   });
